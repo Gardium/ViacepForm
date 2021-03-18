@@ -2,11 +2,11 @@ import "./App.css";
 import React, { useState } from "react";
 
 function App() {
-  const [logradouro, setLogradouro] = useState(null);
-  const [bairro, setBairro] = useState(null);
-  const [cidade, setCidade] = useState(null);
-  const [uf, setUf] = useState(null);
-  const [numero, setNumero] = useState(null);
+  const [logradouro, setLogradouro] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [uf, setUf] = useState("");
+  const [numero, setNumero] = useState("");
   const [isValid, setisValid] = useState(false);
 
   function limpar() {
@@ -75,7 +75,7 @@ function App() {
             <input
               value={logradouro}
               name="logradouro"
-              readonly={true}
+              readOnly={true}
               type="text"
             ></input>
           </div>
@@ -84,7 +84,7 @@ function App() {
             <label>Numero</label>
             <input
               onBlur={isEmpty}
-              readonly={!isValid}
+              readOnly={!isValid}
               name="numero"
               type="text"
             ></input>
@@ -93,14 +93,14 @@ function App() {
         <div className="doisCampos">
           <div className="container">
             <label>Complemento</label>
-            <input readonly={!isValid} name="complemento" type="text"></input>
+            <input readOnly={!isValid} name="complemento" type="text"></input>
           </div>
 
           <div className="container">
             <label>Bairro</label>
 
             <input
-              readonly={true}
+              readOnly={true}
               value={bairro}
               name="bairro"
               type="text"
@@ -111,7 +111,7 @@ function App() {
           <div className="container">
             <label>Cidade</label>
             <input
-              readonly={true}
+              readOnly={true}
               value={cidade}
               name="cidade"
               type="text"
@@ -119,7 +119,7 @@ function App() {
           </div>
           <div className="container">
             <label>UF</label>
-            <select readonly={true} value={uf} name="uf">
+            <select readOnly={true} value={uf} name="uf">
               <option value="">-</option>
               <option value="AC">AC</option>
               <option value="AL">AL</option>
