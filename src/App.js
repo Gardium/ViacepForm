@@ -81,9 +81,9 @@ function App() {
           </div>
 
           <div className="container">
-            <label>Numero</label>
+            <label>Número</label>
             <input
-              onBlur={isEmpty}
+              onChange={isEmpty}
               readOnly={!isValid}
               name="numero"
               type="text"
