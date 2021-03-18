@@ -16,7 +16,7 @@
  #### [Teste você mesmo! ](https://viacep-form.vercel.app/)
  <div align="center">
 
-  <img height = "500px" src="./github/form.gif"/>
+  <img height = "500px" src="./github/Form.gif"/>
 
  </div>
 
