@@ -1,13 +1,14 @@
-import "./App.css";
+import "./FormCep.css";
 import React, { useState } from "react";
 
-function App() {
+export default function FormCep() {
   const [logradouro, setLogradouro] = useState("");
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
   const [uf, setUf] = useState("");
   const [numero, setNumero] = useState("");
   const [isValid, setisValid] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   function limpar() {
     setBairro("");
@@ -36,16 +37,13 @@ function App() {
 
       return;
     }
+    verficaCep(cep);
+  }
 
+  function verficaCep(cep) {
     fetch(`https://viacep.com.br/ws/${cep}/json`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.erro) {
-          ev.target.style.border = "3px solid #df4759";
-          limpar();
-          return;
-        }
         setLogradouro(data.logradouro);
         setCidade(data.localidade);
         setBairro(data.bairro);
@@ -53,10 +51,20 @@ function App() {
       })
       .then(() => {
         setisValid(true);
-      });
+      })
+      .catch((err) => setFetchError(true));
   }
   return (
-    <div className="App">
+    <div className="FormCep">
+      {fetchError && (
+        <p className="errorMessage">
+          <strong>
+            Erro de conexão com o servidor,
+            <br />
+            tente novamente mais tarde
+          </strong>
+        </p>
+      )}
       <form>
         <div className="tresCampos">
           <div className="container">
@@ -152,16 +160,14 @@ function App() {
           </div>
         </div>
         <div>
-          <button type="submit" disabled={!isValid || !numero}>
-            Enviar
-          </button>
           <button onClick={limpar} type="reset">
             Reset
+          </button>
+          <button type="submit" disabled={!isValid || !numero}>
+            Enviar
           </button>
         </div>
       </form>
     </div>
   );
 }
-
-export default App;
