@@ -13,6 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .FormCep {
+  max-width: 700px;
   width: 90%;
   margin: 50px auto;
   padding: 40px;
