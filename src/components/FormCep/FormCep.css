@@ -17,6 +17,7 @@ body {
   width: 90%;
   margin: 50px auto;
   padding: 40px;
+  padding-bottom: 0;
   background: #e5e5e5;
   border-radius: 8px;
 }
@@ -94,7 +95,13 @@ button:disabled {
 button:not(button:disabled):hover {
   box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
 }
-
+footer {
+  padding: 0;
+  margin: 0;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.8rem;
+}
 .errorMessage {
   color: #df4759;
   text-align: center;

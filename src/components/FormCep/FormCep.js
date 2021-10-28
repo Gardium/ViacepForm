@@ -27,19 +27,13 @@ export default function FormCep() {
   function onFocusCep(e) {
     e.target.style.border = "3px solid transparent";
   }
-  function onBlurCep(ev) {
-    const { value } = ev.target;
 
-    const cep = value?.replace(/[^0-9]/g, "");
-    if (cep?.length !== 8) {
-      ev.target.style.border = "3px solid #df4759";
-      limpar();
+  function wrongCEP() {
+    const cep = document.querySelector("[name='cep']");
 
-      return;
-    }
-    verficaCep(cep);
+    cep.style.border = "3px solid #df4759";
+    limpar();
   }
-
   function verficaCep(cep) {
     fetch(`https://viacep.com.br/ws/${cep}/json`)
       .then((res) => res.json())
@@ -48,12 +42,22 @@ export default function FormCep() {
         setCidade(data.localidade);
         setBairro(data.bairro);
         setUf(data.uf);
+        data.erro ? wrongCEP() : setisValid(true);
       })
-      .then(() => {
-        setisValid(true);
-      })
+
       .catch((err) => setFetchError(true));
   }
+  function onBlurCep(ev) {
+    const { value } = ev.target;
+
+    const cep = value?.replace(/[^0-9]/g, "");
+    if (cep?.length !== 8) {
+      wrongCEP();
+      return;
+    }
+    verficaCep(cep);
+  }
+
   return (
     <div className="FormCep">
       {fetchError && (
@@ -168,6 +172,8 @@ export default function FormCep() {
           </button>
         </div>
       </form>
+
+      <footer>Made by Edgard Araujo👽</footer>
     </div>
   );
 }
