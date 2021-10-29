@@ -102,6 +102,10 @@ footer {
   text-align: center;
   font-size: 0.8rem;
 }
+footer a {
+  text-decoration: none;
+  color: #000;
+}
 .errorMessage {
   color: #df4759;
   text-align: center;

@@ -35,6 +35,7 @@ export default function FormCep() {
     limpar();
   }
   function verficaCep(cep) {
+    setisValid(false);
     fetch(`https://viacep.com.br/ws/${cep}/json`)
       .then((res) => res.json())
       .then((data) => {
@@ -43,6 +44,7 @@ export default function FormCep() {
         setBairro(data.bairro);
         setUf(data.uf);
         data.erro ? wrongCEP() : setisValid(true);
+        setFetchError(false);
       })
 
       .catch((err) => setFetchError(true));
@@ -63,7 +65,7 @@ export default function FormCep() {
       {fetchError && (
         <p className="errorMessage">
           <strong>
-            Erro de conexão com o servidor,
+            Erro de conexãocom o servidor,
             <br />
             tente novamente mais tarde
           </strong>
@@ -173,7 +175,9 @@ export default function FormCep() {
         </div>
       </form>
 
-      <footer>Made by Edgard Araujo👽</footer>
+      <footer>
+        <a href="https://github.com/gardium">Made by Edgard Araujo👽</a>
+      </footer>
     </div>
   );
 }
